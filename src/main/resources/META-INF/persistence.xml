@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="praticas" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>br.edu.ifpb.praticas.beans.Pessoa</class>
+    <properties>
+<!--      <property name="hibernate.c3p0.min_size" value="5"/>
+      <property name="hibernate.c3p0.max_size" value="10"/>
+      <property name="hibernate.c3p0.timeout" value="100"/>
+      <property name="hibernate.c3p0.max_statements" value="50"/>
+      <property name="hibernate.c3p0.idle_test_period" value="3000"/>
+      <property name="hibernate.c3p0.acquire_increment" value="1"/>
+      <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JOTMTransactionManagerLookup"/>
+      <property name="hibernate.transation.factory_class" value="org.hibernate.transation.JTATransactionFactory"/>
+      <property name="jta.UserTransaction" value="java:comp/UserTransaction"/>
+      
+            banco
+            <property name="hibernate.connetion.username" value="postgres"/>
+            <property name="hibernate.connetion.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connetion.password" value="123"/>
+            <property name="hibernate.connetion.url" value="jdbc:postgesql://localhost:5432/projetoPraticas"/>
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoChacheProvider"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>-->
+<!--      
+            <property name="eclipselink.connection-pool.default.initial" value="1" /> 
+            <property name="eclipselink.connection-pool.node2.min" value="16"/> 
+            <property name="eclipselink.connection-pool.node2.max" value="16"/> 
+            <property name="eclipselink.connection-pool.node2.url" value="jdbc:postgresql://localhost:5432/projetoPraticas"/>-->
+      
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/projetoPraticas"/>
+            <property name="javax.persistence.jdbc.password" value="123"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+      
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      
+        </properties>
+    </persistence-unit>
+</persistence>

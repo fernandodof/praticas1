@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<context path="/ProjetoPraticas">
+    <Transaction name="UserTransaction" auth="Container" type="javx.transaction.UserTransaction"
+    factory="org.objectweb.jotm.UserTansactionFactory" jotm.timeout="60"/>
+</context>
