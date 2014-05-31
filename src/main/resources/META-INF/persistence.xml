@@ -3,8 +3,10 @@
   <persistence-unit name="praticas" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifpb.praticas.beans.Pessoa</class>
+    <class>br.edu.ifpb.praticas.beans.Aposta</class>
+    <class>br.edu.ifpb.praticas.beans.Concurso</class>
     <properties>
-<!--      <property name="hibernate.c3p0.min_size" value="5"/>
+      <!--      <property name="hibernate.c3p0.min_size" value="5"/>
       <property name="hibernate.c3p0.max_size" value="10"/>
       <property name="hibernate.c3p0.timeout" value="100"/>
       <property name="hibernate.c3p0.max_statements" value="50"/>
@@ -22,19 +24,16 @@
             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoChacheProvider"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>-->
-<!--      
+      <!--      
             <property name="eclipselink.connection-pool.default.initial" value="1" /> 
             <property name="eclipselink.connection-pool.node2.min" value="16"/> 
             <property name="eclipselink.connection-pool.node2.max" value="16"/> 
             <property name="eclipselink.connection-pool.node2.url" value="jdbc:postgresql://localhost:5432/projetoPraticas"/>-->
-      
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/projetoPraticas"/>
-            <property name="javax.persistence.jdbc.password" value="123"/>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.user" value="postgres"/>
-      
-            <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      
-        </properties>
-    </persistence-unit>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/projetoPraticas"/>
+      <property name="javax.persistence.jdbc.password" value="123"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
 </persistence>

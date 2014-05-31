@@ -4,13 +4,16 @@
  * and open the template in the editor.
  */
 
-package bt.edu.ifpb.praticas.dao;
+package br.edu.ifpb.praticas.dao;
 
 /**
  *
  * @author Fernando
  */
 public interface GenericoDAO<T> {
-    boolean salvar(T entity);
-    boolean atualizar(T entity);
+    public boolean save (T entity);
+    public T find (Class<T> classType, T entity);
+    public boolean update (T entity);
+    public boolean delete (T entity);
+    public T getById (Class<T> classTClass, Object id);
 }

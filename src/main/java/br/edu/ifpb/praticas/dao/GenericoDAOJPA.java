@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bt.edu.ifpb.praticas.dao;
+package br.edu.ifpb.praticas.dao;
 
 import com.sun.jndi.cosnaming.CNCtx;
 import java.util.logging.Level;
@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
@@ -43,8 +44,7 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
 //        UserTransaction userTransaction = (UserTransaction) context.lookup("UserTransaction");
 //        return userTransaction;
 //    }
-
-    public boolean salvar(T entity) {
+    public boolean save(T entity) {
         try {
             this.em.getTransaction().begin();
             em.persist(entity);
@@ -58,7 +58,7 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
         }
     }
 
-    public boolean atualizar(T entity) {
+    public boolean update(T entity) {
         try {
             this.em.getTransaction().begin();
             em.merge(entity);
@@ -69,6 +69,35 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
             ex.printStackTrace();
             this.em.getTransaction().rollback();
             return false;
+        }
+    }
+
+    @Override
+    public T find(Class<T> classType, T entity) {
+        return this.em.find(classType, entity);
+    }
+
+    @Override
+    public boolean delete(T entity) {
+        try {
+            this.em.getTransaction().begin();
+            this.em.remove(entity);
+            this.em.getTransaction().commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            this.em.getTransaction().rollback();
+            return false;
+        }
+    }
+
+    @Override
+    public T getById(Class<T> classTClass, Object id) {
+        try {
+            return getEntityManager().find(classTClass, id);
+        } catch (NoResultException ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 
