@@ -6,6 +6,9 @@
 
 package br.edu.ifpb.praticas.dao;
 
+import java.io.Serializable;
+import java.util.Map;
+
 /**
  *
  * @author Fernando
@@ -16,4 +19,6 @@ public interface GenericoDAO<T> {
     public boolean update (T entity);
     public boolean delete (T entity);
     public T getById (Class<T> classTClass, Object id);
+    public T simpleQuery(String query, Map<Integer, Serializable> map);
+    public T executeNativeQuery(String query);
 }

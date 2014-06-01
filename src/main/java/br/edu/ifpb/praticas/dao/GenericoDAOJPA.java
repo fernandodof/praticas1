@@ -5,22 +5,17 @@
  */
 package br.edu.ifpb.praticas.dao;
 
-import com.sun.jndi.cosnaming.CNCtx;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import java.io.Serializable;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 
 /**
  *
  * @author Fernando
+ * @param <T>
  */
 public class GenericoDAOJPA<T> implements GenericoDAO<T> {
 
@@ -31,7 +26,7 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
         this.em = getEntityManager();
     }
 
-    private EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() {
         if (em == null) {
             factory = Persistence.createEntityManagerFactory("praticas");
             em = factory.createEntityManager();
@@ -99,6 +94,16 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public T simpleQuery(String query, Map<Integer, Serializable> map) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public T executeNativeQuery(String query) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

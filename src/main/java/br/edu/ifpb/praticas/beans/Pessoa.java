@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -24,6 +26,8 @@ import javax.persistence.SequenceGenerator;
  */
 @Entity
 @SequenceGenerator(name = "seq_pessoa", sequenceName = "Sequencia_De_Pessoa", allocationSize = 1, initialValue = 0)
+@NamedQueries({
+    @NamedQuery(name="Pessoa.login", query = "SELECT p FROM Pessoa p WHERE p.email = :email AND p.senha = :senha")})
 public class Pessoa implements Serializable {
 
     @Id
@@ -36,15 +40,18 @@ public class Pessoa implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pessoa_id")
     private List<Aposta> aposta;
-
+    //se verdadeiro o usuário é administrador
+    private boolean adm;
+      
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String email, String senha) {
+    public Pessoa(String nome, String email, String senha, boolean adm) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.aposta = new ArrayList();
+        this.adm = adm;
     }
 
     public int getId() {
@@ -87,4 +94,12 @@ public class Pessoa implements Serializable {
         this.aposta = (List<Aposta>) aposta;
     }
 
+    public boolean isAdm() {
+        return adm;
+    }
+
+    public void setAdm(boolean adm) {
+        this.adm = adm;
+    }
+    
 }
