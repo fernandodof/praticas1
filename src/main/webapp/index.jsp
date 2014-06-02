@@ -19,19 +19,23 @@
         <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
             <input type="text" name="email" placeholder="Email" required>
             <input type="text" name="senha" placeholder="Senha" required>
-            <input type="hidden" value="LoginApostador" name="command">
+            <input type="hidden" value="Login" name="command">
             <input type="submit" value="Entrar">
         </form>
-        <c:if test="${loginError != null}">
+        <c:if test="${loginErro != null}">
             <label>Email ou Senha não conferem</label>
         </c:if>
 
-        <form method="POST" action="">
-            <input type="text" name="nome" placeholder="Nome" required>
-            <input type="email" name="email" placeholder="Email" required>
+        <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
+            <input type="text" name="nome" placeholder="Nome" required value="${nomeCadastro}">
+            <input type="email" name="email" placeholder="Email" required value="${email}">
             <input type="password" name="senha" placeholder="Senha" required>
             <input type="password" name="senha1" placeholder="Confirme a senha" required>
+            <input type="hidden" value="CadastrarApostador" name="command">
             <input type="submit" value="Cadastrar-se">
         </form>
+        <c:if test="${erroOcorrido != null}">
+            <label>${erroOcorrido}</label>
+        </c:if>
     </body>
 </html>

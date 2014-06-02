@@ -8,6 +8,8 @@ package br.edu.ifpb.praticas.dao;
 
 import java.io.Serializable;
 import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,5 +22,8 @@ public interface GenericoDAO<T> {
     public boolean delete (T entity);
     public T getById (Class<T> classTClass, Object id);
     public T simpleQuery(String query, Map<Integer, Serializable> map);
+    public EntityManager getEntityManager(); 
     public T executeNativeQuery(String query);
+    public T getSingleResultOfNamedQuery(String namedQuery, Map<String, Object> map);
+    public T getSingleResultOfNamedQuery(String namedQuery);
 }

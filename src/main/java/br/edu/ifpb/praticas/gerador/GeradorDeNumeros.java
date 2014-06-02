@@ -15,9 +15,9 @@ import java.util.TreeSet;
  */
 public class GeradorDeNumeros {
 
-    Random r = new Random();
-
-    public Set getSeisNumerosEntreUmESessenta() {
+    private static Random r = new Random();
+       
+    public static Set getSeisNumerosEntreUmESessenta() {
         int high = 60;
         Set numbers = new TreeSet();
         for (int i = 0; i < 6; i++) {

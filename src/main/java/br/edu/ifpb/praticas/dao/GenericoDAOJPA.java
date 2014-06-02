@@ -6,11 +6,13 @@
 package br.edu.ifpb.praticas.dao;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,7 +28,7 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
         this.em = getEntityManager();
     }
 
-    protected EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         if (em == null) {
             factory = Persistence.createEntityManagerFactory("praticas");
             em = factory.createEntityManager();
@@ -39,6 +41,7 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
 //        UserTransaction userTransaction = (UserTransaction) context.lookup("UserTransaction");
 //        return userTransaction;
 //    }
+    @Override
     public boolean save(T entity) {
         try {
             this.em.getTransaction().begin();
@@ -104,6 +107,26 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
     @Override
     public T executeNativeQuery(String query) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public T getSingleResultOfNamedQuery(String namedQuery, Map<String, Object> map) {
+        Query query = this.em.createNamedQuery(namedQuery);
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            String param = entry.getKey();
+            Object value = entry.getValue();
+            query.setParameter(param, value);
+        }
+        return (T) query.getSingleResult();
+    }
+
+    public T getSingleResultOfNamedQuery(String namedQuery) {
+        try {
+            Query query = this.em.createNamedQuery(namedQuery);
+            return (T) query.getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
 
 }
