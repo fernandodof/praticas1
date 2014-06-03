@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 
@@ -23,7 +22,7 @@ public class Aposta implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_aposta")
     private int id;
     private Set numeros;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Concurso concurso;
     
     public Aposta() {
@@ -55,6 +54,10 @@ public class Aposta implements Serializable {
 
     public void setConcurso(Concurso concurso) {
         this.concurso = concurso;
+    }
+    
+    public Set getResultado(){
+        return this.concurso.getNumeros();
     }
     
 }

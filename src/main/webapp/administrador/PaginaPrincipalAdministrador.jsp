@@ -35,15 +35,25 @@
             <label>${erroOcorrido}</label>
         </c:if>
 
-        <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
-            <input type="hidden" value="RealizarSorteio" name="command">
-            <input type="hidden" name="NumConcurso" value="${proximoConcurso.id}">
-            <input type="submit" value="Realizar Sorteio">
-        </form>
+        <c:if test="${proximoConcurso != null and proximoConcurso.realizado == false}">
+            <br><br><label>Próximo Concurso</label><br>
+            <label>Numero do Concurso: ${proximoConcurso.id}</label><br>
+            <label>Data do Sorteio: ${proximoConcurso.dataHora}</label>
+            <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
+                <input type="hidden" value="RealizarSorteio" name="command">
+                <input type="hidden" name="NumConcurso" value="${proximoConcurso.id}">
+                <input type="submit" value="Realizar Sorteio">
+            </form>
+        </c:if>
+
         <c:if test="${numerosSorteados != null}">
             <label>Sorteio Realizado Com sucesso</label><br>
             <label>Numeros Sorteados</label><br>
-            <label></label>
+            <label>
+                <c:forEach items="${numerosSorteados}" var="numero">
+                    ${numero}
+                </c:forEach>
+            </label>
         </c:if>
     </body>
 </html>

@@ -15,10 +15,10 @@
     </head>
     <body>
         <h1>Pagina principal</h1>
-        <c:if test="${proximoConcurso != null and proximoConcurso.realizado == false}">
+        <c:if test="${proximoConcurso != null}">
             <label>Próximo Concurso</label>
             <label>Numero do Concurso: ${proximoConcurso.id}</label>
-            <label>Data do Sorteio: ${proximoConcurso.dataHora}</label>
+            <label>Data do Sorteio: ${dataSorteio}</label>
         </c:if>
         <c:choose>     
             <c:when test="${proximoConcurso != null}">   
@@ -39,6 +39,15 @@
                 <label>Não há concursos cadastrados para as próximas datas</label>
             </c:otherwise>            
         </c:choose>
-
+        <c:choose>
+            <c:when test="${apostaRealizada != null and apostaRealizada == true}">
+                <label>Apostas realizada com sucesso, Boa Sorte</label>
+            </c:when>
+            <c:when test="${apostaRealizada != null and apostaRealizada == false}">
+                <label>Ocorreu um erro no processamento da sua aposta</label>
+                <label>${erroAposta}</label>
+            </c:when>
+        </c:choose>
+        <a href="ApostasEResultados.jsp">Apostas e resultados</a> 
     </body>
 </html>

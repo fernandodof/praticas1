@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
 @Entity
 @SequenceGenerator(name = "seq_concurso", sequenceName = "Sequencia_de_concurso", allocationSize = 1, initialValue = 0)
 @NamedQueries({
-    @NamedQuery(name="Concurso.proximos", query = "SELECT c FROM Concurso c WHERE c.dataHora > CURRENT_TIMESTAMP and c.realizado <> FALSE")})
+    @NamedQuery(name="Concurso.proximos", query = "SELECT c FROM Concurso c WHERE c.dataHora > CURRENT_TIMESTAMP and c.realizado = FALSE")})
 public class Concurso implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_concurso")

@@ -10,8 +10,13 @@ import br.edu.ifpb.praticas.beans.Pessoa;
 import br.edu.ifpb.praticas.dao.GenericoDAO;
 import br.edu.ifpb.praticas.dao.GenericoDAOJPA;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +42,10 @@ public class Login implements Command {
             request.getSession().setAttribute("id", pessoa.getId());
             
             if(genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos") != null){
-                request.getSession().setAttribute("proximoConcurso", genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos"));
+                Concurso concurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
+                request.getSession().setAttribute("proximoConcurso", concurso);
+                String d = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(concurso.getDataHora().toString()));
+                request.getSession().setAttribute("dataSorteio", d);
             }else{
                 request.getSession().setAttribute("proximoConcurso", null);
             }
@@ -53,7 +61,7 @@ public class Login implements Command {
             } catch (ServletException | IOException ex1) {
                 ex.printStackTrace();
             }
-        } catch (ServletException | IOException ex) {
+        } catch (ServletException | IOException | ParseException ex) {
             ex.printStackTrace();
         }
     }
