@@ -64,11 +64,10 @@
                 </c:forEach>
             </label>
         </c:if>
+        <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+            <input type="submit" value="Logout">
+            <input type="hidden" value="Logout" name="command">
+        </form>
+
     </body>
-
-    <form method="post" action="/ProjetoPraticas/FrontCrontroller">
-        <input type="submit" value="Logout">
-        <input type="hidden" value="Logout" name="command">
-    </form>
-
 </html>
