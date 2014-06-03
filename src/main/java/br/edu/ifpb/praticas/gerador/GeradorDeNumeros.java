@@ -7,6 +7,7 @@ package br.edu.ifpb.praticas.gerador;
 
 import java.util.Random;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
@@ -17,9 +18,9 @@ public class GeradorDeNumeros {
 
     private static Random r = new Random();
        
-    public static Set getSeisNumerosEntreUmESessenta() {
+    public static SortedSet getSeisNumerosEntreUmESessenta() {
         int high = 60;
-        Set numbers = new TreeSet();
+        SortedSet numbers = new TreeSet();
         for (int i = 0; i < 6; i++) {
             numbers.add(r.nextInt(high) + 1);
         }

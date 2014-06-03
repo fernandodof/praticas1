@@ -12,6 +12,7 @@ import br.edu.ifpb.praticas.dao.GenericoDAOJPA;
 import br.edu.ifpb.praticas.gerador.GeradorDeNumeros;
 import java.io.IOException;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class RealizarSorteio implements Command{
         try {
             GenericoDAO genericoDAO = new GenericoDAOJPA();
             Concurso concurso = (Concurso) genericoDAO.getById(Concurso.class, Long.parseLong(request.getParameter("NumConcurso")));
-            Set numerosSorteados = GeradorDeNumeros.getSeisNumerosEntreUmESessenta();
+            SortedSet numerosSorteados = GeradorDeNumeros.getSeisNumerosEntreUmESessenta();
             concurso.setNumeros(numerosSorteados);
             concurso.setRealizado(true);
             genericoDAO.update(concurso);

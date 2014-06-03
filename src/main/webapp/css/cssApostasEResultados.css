@@ -1,0 +1,18 @@
+table{
+    float: left;
+    border-collapse: collapse;
+    width: 600px;
+}
+
+table tr td, th{
+    border: 1px solid black;
+    padding: 2px 1px 2px 1px;
+}
+
+.id{
+    width: 60px;
+}
+
+.numeros{
+    width: 160px;
+}

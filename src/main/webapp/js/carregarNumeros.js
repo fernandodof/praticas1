@@ -30,6 +30,6 @@ function carregarNumeros(element) {
             }
         }
     }
-    numsArray.sort();
+    numsArray.sort(function(a, b){return a-b});
     document.getElementById('aposta').value = numsArray;
 }

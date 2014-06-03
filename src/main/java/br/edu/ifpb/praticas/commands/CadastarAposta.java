@@ -14,7 +14,10 @@ import br.edu.ifpb.praticas.exceptions.ErroAconteceuException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,8 +40,9 @@ public class CadastarAposta implements Command {
             if (numerosString.length < 6) {
                 throw new ErroAconteceuException("Aposta não realizada, informe 6 números para apostar");
             }
-            Set numeros = new TreeSet();
+            SortedSet numeros = new TreeSet();
             numeros.addAll(Arrays.asList(numerosString));
+
             Concurso concurso = (Concurso) request.getSession().getAttribute("proximoConcurso");
             Aposta aposta = new Aposta(numeros);
             aposta.setConcurso(concurso);

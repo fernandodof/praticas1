@@ -4,6 +4,7 @@
     Author     : Fernando
 --%>
 
+<%@page import="br.edu.ifpb.praticas.beans.Concurso"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="br.edu.ifpb.praticas.beans.Aposta"%>
@@ -16,15 +17,50 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../css/cssApostasEResultados.css" type="text/css" rel="stylesheet"/>
         <title>JSP Page</title>
     </head>
     <body>
         <%
-        GenericoDAO genericoDAO = new GenericoDAOJPA();
-        Pessoa pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, session.getAttribute("id"));
-        List<Aposta> apostas = pessoa.getAposta();
-        pageContext.setAttribute("apostas", apostas);
+            GenericoDAO genericoDAO = new GenericoDAOJPA();
+            Pessoa pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, session.getAttribute("id"));
+            List<Aposta> apostas = pessoa.getAposta();
+            pageContext.setAttribute("apostas", apostas);
+            List<Concurso> concursos = new ArrayList();
+            for (int i = 0; i < apostas.size(); i++) {
+                concursos.add(apostas.get(i).getConcurso());
+            }
+            pageContext.setAttribute("concursos", concursos);
         %>
         <h1>Apostas e Resultados</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="ids">Id Aposta</th>
+                    <th class="numeros">Números Apostados</th>
+                    <th class="ids">Id Concurso</th>
+                    <th class="numeros">Números Sorteados</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${apostas}" var="aposta">
+                    <tr>
+                        <td class="ids">${aposta.id}</td>
+                        <td class="numeros">${aposta.numeros}</td>
+                        <td class="ids">${aposta.concurso.id}</td>
+                        <td class="numeros">${aposta.concurso.numeros}</td>
+                        <c:choose>
+                            <c:when test="${aposta.numeros.toString() eq aposta.concurso.numeros.toString()}">
+                                <td>Acertou</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>Errou</td>
+                            </c:otherwise>
+                        </c:choose>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </body>
 </html>

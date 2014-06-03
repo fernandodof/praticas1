@@ -1,7 +1,9 @@
 
 package br.edu.ifpb.praticas.testes;
 
+import br.edu.ifpb.praticas.gerador.GeradorDeNumeros;
 import static br.edu.ifpb.praticas.testes.ValidaEmail.isEmailValido;
+import java.util.SortedSet;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -44,6 +46,9 @@ public class EmailTest {
        assertEquals(isEmailValido("dudalira@bol.oom.br"), true);
    }
    
-   
+   @Test
+   public void testNumerosDiferentes(){
+       
+   }
     
 }

@@ -1,7 +1,10 @@
 package br.edu.ifpb.praticas.beans;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,14 +25,14 @@ public class Aposta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_aposta")
     private int id;
-    private Set numeros;
+    private SortedSet numeros;
     @ManyToOne(cascade = CascadeType.ALL)
     private Concurso concurso;
     
     public Aposta() {
     }
 
-    public Aposta(Set numeros) {
+    public Aposta(SortedSet numeros) {
         this.numeros = numeros;
     }
 
@@ -45,7 +48,7 @@ public class Aposta implements Serializable {
         return numeros;
     }
 
-    public void setNumeros(Set numeros) {
+    public void setNumeros(SortedSet numeros) {
         this.numeros = numeros;
     }
     

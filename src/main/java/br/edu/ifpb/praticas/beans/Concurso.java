@@ -9,6 +9,7 @@ package br.edu.ifpb.praticas.beans;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
+import java.util.SortedSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Concurso implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_concurso")
     private Long id;
-    private Set numeros;
+    private SortedSet numeros;
     @Column(unique = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHora;
@@ -54,11 +55,11 @@ public class Concurso implements Serializable{
         this.id = id;
     }
 
-    public Set getNumeros() {
+    public SortedSet getNumeros() {
         return numeros;
     }
 
-    public void setNumeros(Set numeros) {
+    public void setNumeros(SortedSet numeros) {
         this.numeros = numeros;
     }
 

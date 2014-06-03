@@ -34,6 +34,7 @@ public class App {
         GenericoDAO genericoDAO = new GenericoDAOJPA();
         Pessoa pessoa = new Pessoa("Fernando", "fernandodof@gmail.com", "123456", false);
         Concurso concurso = new Concurso(Date.valueOf("2014-06-03"));
+        genericoDAO.save(pessoa);
         genericoDAO.save(concurso);
         
        
@@ -44,12 +45,13 @@ public class App {
 //        
 //        System.out.println(pessoa.getEmail());
        
-        
-        
-        genericoDAO.save(pessoa);
-        
+        pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
+        List<Aposta> apostas = pessoa.getAposta();
+        for (Aposta aposta : apostas) {
+            System.out.println(aposta.getNumeros());
+        }
+//        
         Pessoa pessoa1 = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
-        GeradorDeNumeros geradorDeNumeros = new GeradorDeNumeros();
         Aposta aposta = new Aposta(GeradorDeNumeros.getSeisNumerosEntreUmESessenta());
 
         pessoa1.getAposta().add(aposta);
@@ -63,7 +65,7 @@ public class App {
         genericoDAO.update(pessoa1);
         System.out.println("Imprimindo tudo do banco");
         pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
-        List<Aposta> apostas = pessoa.getAposta();
+        List<Aposta> apostas1 = pessoa.getAposta();
         Set numbers;
         for (Aposta aposta1 : apostas) {
             numbers = aposta1.getNumeros();
