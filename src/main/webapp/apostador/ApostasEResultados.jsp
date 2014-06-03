@@ -23,14 +23,13 @@
     <body>
         <%
             GenericoDAO genericoDAO = new GenericoDAOJPA();
+            Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
+            pageContext.setAttribute("proximoConcurso", proximoConcurso);
+
             Pessoa pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, session.getAttribute("id"));
             List<Aposta> apostas = pessoa.getAposta();
             pageContext.setAttribute("apostas", apostas);
-            List<Concurso> concursos = new ArrayList();
-            for (int i = 0; i < apostas.size(); i++) {
-                concursos.add(apostas.get(i).getConcurso());
-            }
-            pageContext.setAttribute("concursos", concursos);
+
         %>
         <h1>Apostas e Resultados</h1>
         <table>
@@ -62,5 +61,10 @@
                 </c:forEach>
             </tbody>
         </table>
+
+        <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+            <input type="submit" value="Logout">
+            <input type="hidden" value="Logout" name="command">
+        </form>
     </body>
 </html>

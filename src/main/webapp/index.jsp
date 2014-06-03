@@ -17,7 +17,7 @@
         <h1>Loteria</h1>
 
         <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
-            <input type="text" name="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="senha" placeholder="Senha" required>
             <input type="hidden" value="Login" name="command">
             <input type="submit" value="Entrar">
@@ -25,7 +25,7 @@
         <c:if test="${loginErro != null}">
             <label>Email ou Senha não conferem</label>
         </c:if>
-
+            <br><br>
         <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
             <input type="text" name="nome" placeholder="Nome" required value="${nomeCadastro}">
             <input type="email" name="email" placeholder="Email" required value="${email}">

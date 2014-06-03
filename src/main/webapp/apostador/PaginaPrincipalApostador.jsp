@@ -4,6 +4,10 @@
     Author     : Fernando
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="br.edu.ifpb.praticas.dao.GenericoDAOJPA"%>
+<%@page import="br.edu.ifpb.praticas.beans.Concurso"%>
+<%@page import="br.edu.ifpb.praticas.dao.GenericoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -14,11 +18,19 @@
         <title>Pagina principal</title>
     </head>
     <body>
+        <%
+            GenericoDAO genericoDAO = new GenericoDAOJPA();
+            Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
+            pageContext.setAttribute("proximoConcurso", proximoConcurso);
+           
+        %>
+
+
         <h1>Pagina principal</h1>
         <c:if test="${proximoConcurso != null}">
             <label>Próximo Concurso</label>
             <label>Numero do Concurso: ${proximoConcurso.id}</label>
-            <label>Data do Sorteio: ${dataSorteio}</label>
+            <label>Data do Sorteio: ${proximoConcurso.dataHora}</label>
         </c:if>
         <c:choose>     
             <c:when test="${proximoConcurso != null}">   
@@ -48,6 +60,11 @@
                 <label>${erroAposta}</label>
             </c:when>
         </c:choose>
-        <a href="apostador/ApostasEResultados.jsp">Apostas e resultados</a> 
+        <a href="apostador/ApostasEResultados.jsp">Apostas e resultados</a>
+        
+        <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+            <input type="submit" value="Logout">
+            <input type="hidden" value="Logout" name="command">
+        </form>
     </body>
 </html>

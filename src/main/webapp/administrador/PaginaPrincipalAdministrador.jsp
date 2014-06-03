@@ -4,6 +4,9 @@
     Author     : Fernando
 --%>
 
+<%@page import="br.edu.ifpb.praticas.beans.Concurso"%>
+<%@page import="br.edu.ifpb.praticas.dao.GenericoDAOJPA"%>
+<%@page import="br.edu.ifpb.praticas.dao.GenericoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -13,6 +16,12 @@
         <title>Principal Apostador</title>
     </head>
     <body>
+        <%
+            GenericoDAO genericoDAO = new GenericoDAOJPA();
+            Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
+            pageContext.setAttribute("proximoConcurso", proximoConcurso);
+        %>
+
         <h1>Principal Apostador</h1>
         <h2>Novo concurso</h2>
         <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
@@ -56,4 +65,10 @@
             </label>
         </c:if>
     </body>
+
+    <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+        <input type="submit" value="Logout">
+        <input type="hidden" value="Logout" name="command">
+    </form>
+
 </html>

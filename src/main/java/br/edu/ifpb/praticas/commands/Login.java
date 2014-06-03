@@ -41,14 +41,13 @@ public class Login implements Command {
             request.getSession().setAttribute("nome", pessoa.getNome());
             request.getSession().setAttribute("id", pessoa.getId());
             
-            if(genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos") != null){
-                Concurso concurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
-                request.getSession().setAttribute("proximoConcurso", concurso);
-                String d = new SimpleDateFormat("dd/MM/yyyy").format(new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy").parse(concurso.getDataHora().toString()));
-                request.getSession().setAttribute("dataSorteio", d);
-            }else{
-                request.getSession().setAttribute("proximoConcurso", null);
-            }
+//            if(genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos") != null){
+//                Concurso concurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
+//                //request.getSession().setAttribute("proximoConcurso", concurso);
+//                request.getSession().setAttribute("dataSorteio", d);
+//            }else{
+//                request.getSession().setAttribute("proximoConcurso", null);
+//            }
             if (pessoa.isAdm()) {
                 request.getRequestDispatcher("administrador/PaginaPrincipalAdministrador.jsp").forward(request, response);
             } else {
@@ -61,7 +60,7 @@ public class Login implements Command {
             } catch (ServletException | IOException ex1) {
                 ex.printStackTrace();
             }
-        } catch (ServletException | IOException | ParseException ex) {
+        } catch (ServletException | IOException ex) {
             ex.printStackTrace();
         }
     }

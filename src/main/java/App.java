@@ -34,10 +34,10 @@ public class App {
         GenericoDAO genericoDAO = new GenericoDAOJPA();
         Pessoa pessoa = new Pessoa("Fernando", "fernandodof@gmail.com", "123456", false);
         Concurso concurso = new Concurso(Date.valueOf("2014-06-03"));
-        genericoDAO.save(pessoa);
-        genericoDAO.save(concurso);
+//        genericoDAO.save(pessoa);
+//        genericoDAO.save(concurso);
         
-       
+        System.out.println(genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos"));
 //        Map<String, Object> loginParms = new HashMap();
 //        loginParms.put("email", "fernandodof@gmail.com");
 //        loginParms.put("senha", "123456");
@@ -45,35 +45,35 @@ public class App {
 //        
 //        System.out.println(pessoa.getEmail());
        
-        pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
-        List<Aposta> apostas = pessoa.getAposta();
-        for (Aposta aposta : apostas) {
-            System.out.println(aposta.getNumeros());
-        }
-//        
-        Pessoa pessoa1 = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
-        Aposta aposta = new Aposta(GeradorDeNumeros.getSeisNumerosEntreUmESessenta());
-
-        pessoa1.getAposta().add(aposta);
-        Iterator it = aposta.getNumeros().iterator();
-        System.out.println("Imprimindo numeros gerados");
-        while (it.hasNext()) {
-            Object object = it.next();
-            System.out.println(object);
-        }
-
-        genericoDAO.update(pessoa1);
-        System.out.println("Imprimindo tudo do banco");
-        pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
-        List<Aposta> apostas1 = pessoa.getAposta();
-        Set numbers;
-        for (Aposta aposta1 : apostas) {
-            numbers = aposta1.getNumeros();
-            Iterator it1 = numbers.iterator();
-            while (it1.hasNext()) {
-                Object object = it1.next();
-                System.out.println(object);
-            }
-        }
+//        pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
+//        List<Aposta> apostas = pessoa.getAposta();
+//        for (Aposta aposta : apostas) {
+//            System.out.println(aposta.getNumeros());
+//        }
+////        
+//        Pessoa pessoa1 = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
+//        Aposta aposta = new Aposta(GeradorDeNumeros.getSeisNumerosEntreUmESessenta());
+//
+//        pessoa1.getAposta().add(aposta);
+//        Iterator it = aposta.getNumeros().iterator();
+//        System.out.println("Imprimindo numeros gerados");
+//        while (it.hasNext()) {
+//            Object object = it.next();
+//            System.out.println(object);
+//        }
+//
+//        genericoDAO.update(pessoa1);
+//        System.out.println("Imprimindo tudo do banco");
+//        pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
+//        List<Aposta> apostas1 = pessoa.getAposta();
+//        Set numbers;
+//        for (Aposta aposta1 : apostas) {
+//            numbers = aposta1.getNumeros();
+//            Iterator it1 = numbers.iterator();
+//            while (it1.hasNext()) {
+//                Object object = it1.next();
+//                System.out.println(object);
+//            }
+//        }
     }
 }
