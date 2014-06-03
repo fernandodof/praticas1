@@ -123,7 +123,7 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
     public T getSingleResultOfNamedQuery(String namedQuery) {
         try {
             Query query = this.em.createNamedQuery(namedQuery);
-            return (T) query.getSingleResult();
+            return (T) query.getResultList().get(0);
         } catch (NoResultException ex) {
             return null;
         }
