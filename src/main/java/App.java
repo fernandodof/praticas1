@@ -50,7 +50,7 @@ public class App {
         
         Pessoa pessoa1 = (Pessoa) genericoDAO.getById(Pessoa.class, 1);
         GeradorDeNumeros geradorDeNumeros = new GeradorDeNumeros();
-        Aposta aposta = new Aposta(GeradorDeNumeros.getSeisNumerosEntreUmESessenta(), concurso);
+        Aposta aposta = new Aposta(GeradorDeNumeros.getSeisNumerosEntreUmESessenta());
 
         pessoa1.getAposta().add(aposta);
         Iterator it = aposta.getNumeros().iterator();
