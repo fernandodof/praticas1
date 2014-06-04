@@ -3,15 +3,17 @@
 <!DOCTYPE html>
 <html>
     <head>        
-        <title>Loteria - A sua sorte começa aqui!</title>
+        <title>Loteria - sua loteria!</title>
         <meta charset="utf-8">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/default.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/ProjetoPraticas/img/favicon.fw.png" />
     </head>
     <body>
-        <div class="topo"><a href="index.jsp">Loteria</a></div>
+        
         <div class="container">
+            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/ProjetoPraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
             <%
                 String nome = (String) session.getAttribute("nome");
             %>
@@ -20,35 +22,41 @@
 
                     <div class="row" id="logar">
                         <div class="span6">
+                            <h3>Entre na sua Conta</h3>
                             <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
-                                <input type="email" name="email" placeholder="Email" required>
-                                <input type="text" name="senha" placeholder="Senha" required>
-                                <input type="hidden" value="Login" name="command">                       
-                                <button type="submit" class="btn btn-success">Entrar</button>	
+                                <input class="span4" type="email" name="email" placeholder="Email" required>
+                                <input class="span4" type="text" name="senha" placeholder="Senha" required>
+                                <input type="hidden" value="Login" name="command"> 
+                                <div class="row" style="margin-left: 280px;">
+                                    <button style="text-align: right" type="submit" class="btn btn-success btn-large">Entrar</button>	
+                                </div>
                             </form>
                             <c:if test="${loginErro != null}">
                                 <label>Email ou Senha não conferem</label>
                             </c:if>
                         </div>
 
-                    </div>
+                   
 
-                    <div class="row" id="cadastrar">
+                    
                         <div class="span6">
+                            <h3>Faça seu cadastro!</h3>
                             <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
-                                <input type="text" name="nome" placeholder="Nome" required value="${nomeCadastro}">
-                                <input type="email" name="email" placeholder="Email" required value="${email}">
-                                <input type="password" name="senha" placeholder="Senha" required>
-                                <input type="password" name="senha1" placeholder="Confirme a senha" required>
-                                <input type="hidden" value="CadastrarApostador" name="command">                        
-                                <button type="submit" class="btn btn-success">Entrar</button>
+                                <input class="span4" type="text" name="nome" placeholder="Nome" required value="${nomeCadastro}">
+                                <input class="span4" type="email" name="email" placeholder="Email" required value="${email}">
+                                <input class="span4" type="password" name="senha" placeholder="Senha" required>
+                                <input class="span4" type="password" name="senha1" placeholder="Confirme a senha" required>
+                                <input type="hidden" value="CadastrarApostador" name="command">
+                                <div class="row" style="margin-left: 280px;">
+                                    <button type="submit" class="btn btn-success btn-large">Entrar</button>
+                                <div class="row" style="margin-left: 280px;">
                             </form>
                             <c:if test="${erroOcorrido != null}">
                                 <label>${erroOcorrido}</label>
                             </c:if>
                         </div>
-
-                    </div>
+                 </div>
+                   
                 </c:when>
                 <c:otherwise>
                     <c:choose>
