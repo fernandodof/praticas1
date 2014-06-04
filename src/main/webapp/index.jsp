@@ -48,7 +48,7 @@
                                 <input class="span4" type="password" name="senha1" placeholder="Confirme a senha" required>
                                 <input type="hidden" value="CadastrarApostador" name="command">
                                 <div class="row" style="margin-left: 280px;">
-                                    <button type="submit" class="btn btn-success btn-large">Entrar</button>
+                                    <button type="submit" class="btn btn-success btn-large">Cadastrar</button>
                                 <div class="row" style="margin-left: 280px;">
                             </form>
                             <c:if test="${erroOcorrido != null}">
