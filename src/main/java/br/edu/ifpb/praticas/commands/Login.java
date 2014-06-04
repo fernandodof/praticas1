@@ -40,7 +40,8 @@ public class Login implements Command {
             Pessoa pessoa = (Pessoa) genericoDAO.getSingleResultOfNamedQuery("Pessoa.login", loginParms);
             request.getSession().setAttribute("nome", pessoa.getNome());
             request.getSession().setAttribute("id", pessoa.getId());
-
+            request.getSession().setAttribute("isAdm", pessoa.isAdm());
+            request.getSession().setAttribute("logado", true);
             if (pessoa.isAdm()) {
                 this.forwardRequest(request, response, "administrador/PaginaPrincipalAdministrador.jsp");
             } else {

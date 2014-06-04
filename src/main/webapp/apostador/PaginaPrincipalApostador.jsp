@@ -3,7 +3,6 @@
     Created on : 31-May-2014, 3:50:15 PM
     Author     : Fernando
 --%>
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="br.edu.ifpb.praticas.dao.GenericoDAOJPA"%>
 <%@page import="br.edu.ifpb.praticas.beans.Concurso"%>
@@ -18,13 +17,12 @@
         <title>Pagina principal</title>
     </head>
     <body>
+        <div class="topo"><a href="/ProjetoPraticas/index.jsp">Loteria</a></div>
         <%
             GenericoDAO genericoDAO = new GenericoDAOJPA();
             Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
             pageContext.setAttribute("proximoConcurso", proximoConcurso);
-           
         %>
-
 
         <h1>Pagina principal</h1>
         <c:if test="${proximoConcurso != null}">
@@ -60,8 +58,8 @@
                 <label>${erroAposta}</label>
             </c:when>
         </c:choose>
-        <a href="apostador/ApostasEResultados.jsp">Apostas e resultados</a>
-        
+                <a href="ApostasEResultados.jsp">Apostas e resultados</a>
+
         <form method="post" action="/ProjetoPraticas/FrontCrontroller">
             <input type="submit" value="Logout">
             <input type="hidden" value="Logout" name="command">

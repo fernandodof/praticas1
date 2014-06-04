@@ -21,6 +21,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div class="topo"><a href="/ProjetoPraticas/index.jsp">Loteria</a></div>
         <%
             GenericoDAO genericoDAO = new GenericoDAOJPA();
             Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");

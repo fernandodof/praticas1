@@ -130,7 +130,6 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
                 return (T) query.getResultList().get(0);
             }
         } catch (NoResultException ex) {
-            ex.printStackTrace();
             return null;
         }
     }
