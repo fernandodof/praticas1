@@ -37,29 +37,25 @@ public class Login implements Command {
             loginParms.put("email", request.getParameter("email"));
             loginParms.put("senha", request.getParameter("senha"));
 
-            Pessoa pessoa = (Pessoa) genericoDAO.getSingleResultOfNamedQuery("Pessoa.login",loginParms);
+            Pessoa pessoa = (Pessoa) genericoDAO.getSingleResultOfNamedQuery("Pessoa.login", loginParms);
             request.getSession().setAttribute("nome", pessoa.getNome());
             request.getSession().setAttribute("id", pessoa.getId());
-            
-//            if(genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos") != null){
-//                Concurso concurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
-//                //request.getSession().setAttribute("proximoConcurso", concurso);
-//                request.getSession().setAttribute("dataSorteio", d);
-//            }else{
-//                request.getSession().setAttribute("proximoConcurso", null);
-//            }
+
             if (pessoa.isAdm()) {
-                request.getRequestDispatcher("administrador/PaginaPrincipalAdministrador.jsp").forward(request, response);
+                this.forwardRequest(request, response, "administrador/PaginaPrincipalAdministrador.jsp");
             } else {
-                request.getRequestDispatcher("apostador/PaginaPrincipalApostador.jsp").forward(request, response);
+                this.forwardRequest(request, response, "apostador/PaginaPrincipalApostador.jsp");
             }
         } catch (NoResultException ex) {
-            try {
-                request.setAttribute("loginErro", true);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            } catch (ServletException | IOException ex1) {
-                ex.printStackTrace();
-            }
+            this.forwardRequest(request, response, "index.jsp");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, String page) {
+        try {
+            request.getRequestDispatcher(page).forward(request, response);
         } catch (ServletException | IOException ex) {
             ex.printStackTrace();
         }
