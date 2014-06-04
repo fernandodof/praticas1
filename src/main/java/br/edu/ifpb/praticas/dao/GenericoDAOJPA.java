@@ -120,11 +120,17 @@ public class GenericoDAOJPA<T> implements GenericoDAO<T> {
         return (T) query.getSingleResult();
     }
 
+    @Override
     public T getSingleResultOfNamedQuery(String namedQuery) {
         try {
             Query query = this.em.createNamedQuery(namedQuery);
-            return (T) query.getResultList().get(0);
+            if (query.getResultList().isEmpty()) {
+                throw new NoResultException();
+            } else {
+                return (T) query.getResultList().get(0);
+            }
         } catch (NoResultException ex) {
+            ex.printStackTrace();
             return null;
         }
     }
