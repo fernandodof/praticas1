@@ -8,9 +8,9 @@
     <head>        
         <title>Página do Administrador - Acesso Restrito</title>
         <meta charset="utf-8">
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="css/default.css" rel="stylesheet">
+        <link href="/ProjetoPraticas/css/bootstrap.css" rel="stylesheet">
+        <link href="/ProjetoPraticas/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/ProjetoPraticas/css/default.css" rel="stylesheet">
         <link rel="shortcut icon" href="/ProjetoPraticas/img/favicon.fw.png" />
     </head>
     <body>

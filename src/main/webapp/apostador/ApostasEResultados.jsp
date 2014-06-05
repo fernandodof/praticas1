@@ -15,57 +15,67 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/cssApostasEResultados.css" type="text/css" rel="stylesheet"/>
-        <title>JSP Page</title>
+    <head>        
+        <title>Loteria - sua loteria!</title>
+        <meta charset="utf-8">
+        <link href="/ProjetoPraticas/css/bootstrap.css" rel="stylesheet">
+        <link href="/ProjetoPraticas/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/ProjetoPraticas/css/default.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/ProjetoPraticas/img/favicon.fw.png" />
     </head>
     <body>
-        <div class="topo"><a href="/ProjetoPraticas/index.jsp">Loteria</a></div>
-        <%
-            GenericoDAO genericoDAO = new GenericoDAOJPA();
-            Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
-            pageContext.setAttribute("proximoConcurso", proximoConcurso);
+        
+        <div class="container">
+            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/ProjetoPraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
+            <%
+                GenericoDAO genericoDAO = new GenericoDAOJPA();
+                Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
+                pageContext.setAttribute("proximoConcurso", proximoConcurso);
 
-            Pessoa pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, session.getAttribute("id"));
-            List<Aposta> apostas = pessoa.getAposta();
-            pageContext.setAttribute("apostas", apostas);
+                Pessoa pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, session.getAttribute("id"));
+                List<Aposta> apostas = pessoa.getAposta();
+                pageContext.setAttribute("apostas", apostas);
 
-        %>
-        <h1>Apostas e Resultados</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th class="ids">Id Aposta</th>
-                    <th class="numeros">Números Apostados</th>
-                    <th class="ids">Id Concurso</th>
-                    <th class="numeros">Números Sorteados</th>
-                    <th>Resultado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${apostas}" var="aposta">
+            %>
+            <div class="row">
+                <div class="span11"><h2>Apostas e Resultados</h2></div>
+                <div class="span1">                    
+                    <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+                        <button type="submit" class="btn btn-danger">Sair</button>
+                        <input type="hidden" value="Logout" name="command">
+                    </form>
+                </div>    
+            </div>
+            
+            <table class="table table-condensed">
+                <thead>
                     <tr>
-                        <td class="ids">${aposta.id}</td>
-                        <td class="numeros">${aposta.numeros}</td>
-                        <td class="ids">${aposta.concurso.id}</td>
-                        <td class="numeros">${aposta.concurso.numeros}</td>
-                        <c:choose>
-                            <c:when test="${aposta.numeros.toString() eq aposta.concurso.numeros.toString()}">
-                                <td>Acertou</td>
-                            </c:when>
-                            <c:otherwise>
-                                <td>Errou</td>
-                            </c:otherwise>
-                        </c:choose>
+                        <th>Id Aposta</th>
+                        <th>Números Apostados</th>
+                        <th>Id Concurso</th>
+                        <th>Números Sorteados</th>
+                        <th>Resultado</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-
-        <form method="post" action="/ProjetoPraticas/FrontCrontroller">
-            <input type="submit" value="Logout">
-            <input type="hidden" value="Logout" name="command">
-        </form>
+                </thead>
+                <tbody>
+                    <c:forEach items="${apostas}" var="aposta">
+                        <tr class="info">
+                            <td class="ids">${aposta.id}</td>
+                            <td class="numeros">${aposta.numeros}</td>
+                            <td class="ids">${aposta.concurso.id}</td>
+                            <td class="numeros">${aposta.concurso.numeros}</td>
+                            <c:choose>
+                                <c:when test="${aposta.numeros.toString() eq aposta.concurso.numeros.toString()}">
+                                    <td>Acertou</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>Errou</td>
+                                </c:otherwise>
+                            </c:choose>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>            
+        </div>
     </body>
 </html>
