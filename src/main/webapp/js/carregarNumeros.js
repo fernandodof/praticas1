@@ -8,10 +8,12 @@ function carregarNumeros(element) {
     if (numsArray.indexOf(element.value) === -1) {
         numsArray.push(element.value);
         element.style.color = 'blue';
+        element.style.fontWeight = 'bold';
     } else {
         numsArray.splice(numsArray.indexOf(element.value), 1);
         element.disable = false;
         element.style.color = 'black';
+        element.style.fontWeight = 'normal';
     }
 
     var numuerosDeBotaos = document.getElementsByClassName('btNumero');
@@ -20,6 +22,7 @@ function carregarNumeros(element) {
             if (numsArray.indexOf(numuerosDeBotaos[i].id) === -1) {
                 numuerosDeBotaos[i].disabled = true;
                 numuerosDeBotaos[i].style.color = 'grey';
+                numuerosDeBotaos[i].style.fontWeight = 'normal';
             }
         }
     } else {
@@ -27,6 +30,7 @@ function carregarNumeros(element) {
             if (numsArray.indexOf(numuerosDeBotaos[i].id) === -1) {
                 numuerosDeBotaos[i].disabled = false;
                 numuerosDeBotaos[i].style.color = 'black';
+                numuerosDeBotaos[i].style.fontWeight = 'normal';
             }
         }
     }

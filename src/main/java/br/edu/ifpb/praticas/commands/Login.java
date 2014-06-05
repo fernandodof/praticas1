@@ -48,6 +48,7 @@ public class Login implements Command {
                 this.forwardRequest(request, response, "apostador/PaginaPrincipalApostador.jsp");
             }
         } catch (NoResultException ex) {
+            request.setAttribute("loginErro", "Usuário ou senha não conferem");
             this.forwardRequest(request, response, "index.jsp");
         } catch (IOException ex) {
             ex.printStackTrace();

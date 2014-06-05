@@ -49,7 +49,7 @@
                                 <input type="hidden" value="CadastrarApostador" name="command">
                                 <div class="row" style="margin-left: 250px;">
                                     <button type="submit" class="btn btn-success btn-large">Cadastrar</button>
-                                </div>>
+                                </div>
                             </form>
                             <c:if test="${erroOcorrido != null}">
                                 <label>${erroOcorrido}</label>

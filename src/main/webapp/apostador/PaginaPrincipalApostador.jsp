@@ -65,7 +65,7 @@
                     <label>${erroAposta}</label>
                 </c:when>
             </c:choose>
-            <a href="ApostasEResultados.jsp">Apostas e resultados</a>
+            <a href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
 
             
         </div>
