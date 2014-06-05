@@ -24,19 +24,19 @@
         <link rel="shortcut icon" href="/ProjetoPraticas/img/favicon.fw.png" />
     </head>
     <body>
-        
+
         <div class="container">
             <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/ProjetoPraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
-            <%
-                GenericoDAO genericoDAO = new GenericoDAOJPA();
-                Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
-                pageContext.setAttribute("proximoConcurso", proximoConcurso);
+                        <%
+                            GenericoDAO genericoDAO = new GenericoDAOJPA();
+                            Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
+                            pageContext.setAttribute("proximoConcurso", proximoConcurso);
 
-                Pessoa pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, session.getAttribute("id"));
-                List<Aposta> apostas = pessoa.getAposta();
-                pageContext.setAttribute("apostas", apostas);
+                            Pessoa pessoa = (Pessoa) genericoDAO.getById(Pessoa.class, session.getAttribute("id"));
+                            List<Aposta> apostas = pessoa.getAposta();
+                            pageContext.setAttribute("apostas", apostas);
 
-            %>
+                        %>
             <div class="row">
                 <div class="span11"><h2>Apostas e Resultados</h2></div>
                 <div class="span1">                    
@@ -46,7 +46,7 @@
                     </form>
                 </div>    
             </div>
-            
+
             <table class="table table-condensed">
                 <thead>
                     <tr>
