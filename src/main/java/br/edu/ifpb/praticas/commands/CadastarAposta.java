@@ -38,7 +38,7 @@ public class CadastarAposta implements Command {
             out = response.getWriter();
             String[] numerosString = request.getParameter("aposta").split(",");
             if (numerosString.length < 6) {
-                throw new ErroAconteceuException("Aposta não realizada, informe 6 números para apostar");
+                throw new ErroAconteceuException("Aposta não realizada, informe 6 números");
             }
             SortedSet numeros = new TreeSet();
             numeros.addAll(Arrays.asList(numerosString));

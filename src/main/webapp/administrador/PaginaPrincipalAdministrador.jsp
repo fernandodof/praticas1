@@ -70,7 +70,7 @@
                 <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
                     <input type="hidden" value="RealizarSorteio" name="command">
                     <input type="hidden" name="NumConcurso" value="${proximoConcurso.id}">
-                    <input type="submit" value="Realizar Sorteio">
+                    <button type="submit" class="btn btn-large btn-inverse">Realizar Sorteio</button>                    
                 </form>
             </c:if>
 

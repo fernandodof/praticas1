@@ -67,7 +67,7 @@
                             </div>
                         </c:when>
                         <c:when test="${apostaRealizada != null and apostaRealizada == false}">
-                            <div class="alert alert-error span3" style="margin-top: 10px;">Ocorreu um erro no processamento da sua aposta</div>
+                            <div class="alert alert-error span3" style="margin-top: 10px;">Erro no processamento da sua aposta</div>
                             <div class="alert alert-error span3" style="margin-top: 10px;">${erroAposta}</div>
                         </c:when>
                     </c:choose>
