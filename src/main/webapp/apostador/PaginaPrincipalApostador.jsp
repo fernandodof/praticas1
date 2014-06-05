@@ -62,19 +62,22 @@
                     </c:choose>
                     <c:choose>
                         <c:when test="${apostaRealizada != null and apostaRealizada == true}">
-                            <div class="alert alert-success">Apostas realizada com sucesso, Boa Sorte</div>
+                            <div class="row">
+                                <div class="alert alert-success span3" style="margin-top: 10px;">Aposta realizada com sucesso!</div>                                    
+                            </div>
                         </c:when>
                         <c:when test="${apostaRealizada != null and apostaRealizada == false}">
-                            <div class="alert alert-error">Ocorreu um erro no processamento da sua aposta</div>
-                            <div class="alert alert-error">${erroAposta}</div>
+                            <div class="alert alert-error span3" style="margin-top: 10px;">Ocorreu um erro no processamento da sua aposta</div>
+                            <div class="alert alert-error span3" style="margin-top: 10px;">${erroAposta}</div>
                         </c:when>
                     </c:choose>
                 </div>
             </div>
             <div class="row">
                 <div class="span6">
-                    <a href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
+                    <a class="btn btn-block btn-primary span3" style="margin-left: 0px;" href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
                 </div>
+                
             </div>
 
         </div>
