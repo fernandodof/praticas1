@@ -31,45 +31,51 @@
                         <input type="hidden" value="Logout" name="command">
                     </form>
                 </div>    
-            
-            <c:if test="${proximoConcurso != null}">
-                <label>Próximo Concurso: <span style="color: #499249">${proximoConcurso.id}</span></label>
-                <label>Data do Sorteio: <span style="color: #499249">${proximoConcurso.dataHora}</span></label>
-                </c:if>
-                <c:choose>     
-                    <c:when test="${proximoConcurso != null}">   
-                    <div class="span4">
-                        <form method="post" action="/ProjetoPraticas/FrontCrontroller">    
-                            <input class="span4" type="text" id="aposta" name="aposta" readonly>
-                            <input type="hidden" value="CadastarAposta" name="command"> 
-                            <div class="row">
-                                <button id="realizar" type="submit" class="btn btn-warning">Realizar Aposta</button>
-                            </div>
-                        </form>
-                    </div>
-            </div>        
-                    <c:forEach begin="1" end="60" var="count" >
-                        <input type="button" id="${count}" class="btNumero btn btn-info" value="${count}" onclick="carregarNumeros(this)" style="width: 50px; ">
-                        <c:if test="${count mod 6 == 0}">
-                            <br>
+            </div>
+            <div class="row">
+                <div class="span6">
+                    <c:if test="${proximoConcurso != null}">
+                        <label>Próximo Concurso: <span style="color: #499249">${proximoConcurso.id}</span></label>
+                        <label>Data do Sorteio: <span style="color: #499249">${proximoConcurso.dataHora}</span></label>
                         </c:if>
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    <label>Não há concursos cadastrados para as próximas datas</label>
-                </c:otherwise>            
-            </c:choose>
-            <c:choose>
-                <c:when test="${apostaRealizada != null and apostaRealizada == true}">
-                    <label>Apostas realizada com sucesso, Boa Sorte</label>
-                </c:when>
-                <c:when test="${apostaRealizada != null and apostaRealizada == false}">
-                    <label>Ocorreu um erro no processamento da sua aposta</label>
-                    <label>${erroAposta}</label>
-                </c:when>
-            </c:choose>
-            <a href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
+                        <c:choose>     
+                            <c:when test="${proximoConcurso != null}">   
 
+                                <form method="post" action="/ProjetoPraticas/FrontCrontroller">    
+                                    <input type="text" id="aposta" name="aposta" readonly>
+                                    <input type="hidden" value="CadastarAposta" name="command"> 
+                                    <button id="realizar" type="submit" class="btn btn-warning" style="margin-top: -15px;">Realizar Aposta</button>
+                                   
+                                </form>
+
+
+                            <c:forEach begin="1" end="60" var="count" >
+                                <input type="button" id="${count}" class="btNumero btn btn-info" value="${count}" onclick="carregarNumeros(this)" style="width: 50px; ">
+                                <c:if test="${count mod 6 == 0}">
+                                    <br>
+                                </c:if>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <label>Não há concursos cadastrados para as próximas datas</label>
+                        </c:otherwise>            
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${apostaRealizada != null and apostaRealizada == true}">
+                            <div class="alert alert-success">Apostas realizada com sucesso, Boa Sorte</div>
+                        </c:when>
+                        <c:when test="${apostaRealizada != null and apostaRealizada == false}">
+                            <div class="alert alert-error">Ocorreu um erro no processamento da sua aposta</div>
+                            <div class="alert alert-error">${erroAposta}</div>
+                        </c:when>
+                    </c:choose>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span6">
+                    <a href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
+                </div>
+            </div>
 
         </div>
         <script src="/ProjetoPraticas/js/carregarNumeros.js"></script>
