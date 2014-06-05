@@ -44,7 +44,7 @@
                                 <form method="post" action="/ProjetoPraticas/FrontCrontroller">    
                                     <input type="text" id="aposta" name="aposta" readonly>
                                     <input type="hidden" value="CadastarAposta" name="command"> 
-                                    <button id="realizar" type="submit" class="btn btn-warning" style="margin-top: -15px;">Realizar Aposta</button>
+                                    <button id="realizar" type="submit" class="btn btn-warning" style="margin-top: -15px;" disabled>Realizar Aposta</button>
                                    
                                 </form>
 
