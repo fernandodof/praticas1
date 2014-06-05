@@ -75,7 +75,7 @@
             </div>
             <div class="row">
                 <div class="span6">
-                    <a class="btn btn-block btn-primary span3" style="margin-left: 0px;" href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
+                    <a class="btn btn-block btn-primary span4" style="margin-left: 0px; margin-bottom: 25px; margin-top: 25px;" href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
                 </div>
                 
             </div>

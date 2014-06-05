@@ -28,7 +28,7 @@
                             </c:if>
                                 <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
                                     <input class="span4" type="email" name="email" placeholder="Email" required>
-                                    <input class="span4" type="text" name="senha" placeholder="Senha" required>
+                                    <input class="span4" type="password" name="senha" placeholder="Senha" required>
                                     <input type="hidden" value="Login" name="command"> 
                                     <div class="row" style="margin-left: 280px;">
                                         <button style="text-align: right" type="submit" class="btn btn-success btn-large">Entrar</button>	

@@ -45,43 +45,46 @@
                         
                             <input type="hidden" value="CadastrarConcurso" name="command">
                             <div class="span2">
-                                <button style="text-align: left;" type="submit" class="btn btn-success">Cadastrar</button>
+                                <button style="margin-left: -25px;" type="submit" class="btn btn-success">Cadastrar</button>
                             </div>
                         </div>  
                     </div>
                 </form>
             </div>
-            <c:choose>
-                <c:when test="${cadastroSucesso != null and cadastroSucesso == true}">
-                    <label>Novo concurso cadastrado com sucesso</label>
-                </c:when>
-                <c:when test="${cadastroSucesso != null and cadastroSucesso == false}">
-                    <label>Novo concurso NÃO cadastro</label>
-                </c:when>    
-            </c:choose>
-            <c:if test="${erroOcorrido != null}">
-                <label>${erroOcorrido}</label>
-            </c:if>
-
+            <div class="row">
+                <c:choose>
+                    <c:when test="${cadastroSucesso != null and cadastroSucesso == true}">
+                        <div class="span4 alert alert-success">Concurso cadastrado com sucesso</div>
+                    </c:when>
+                    <c:when test="${cadastroSucesso != null and cadastroSucesso == false}">
+                        <div class="span4 alert alert-error">Concurso não cadastrado</div>
+                    </c:when>    
+                </c:choose>
+                <c:if test="${erroOcorrido != null}">
+                    <div class="span4 alert alert-error">${erroOcorrido}</div>
+                </c:if>
+            </div>
+            
             <c:if test="${proximoConcurso != null and proximoConcurso.realizado == false}">
-                <br><br><label>Próximo Concurso ${proximoConcurso.id}</label><br>
-                <label>Data do Sorteio: ${proximoConcurso.dataHora}</label>
+                <label><b>Próximo Concurso ${proximoConcurso.id}</b></label>
+                <label><b>Data do Sorteio: ${proximoConcurso.dataHora}</b></label>
                 <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
                     <input type="hidden" value="RealizarSorteio" name="command">
                     <input type="hidden" name="NumConcurso" value="${proximoConcurso.id}">
                     <button type="submit" class="btn btn-large btn-inverse">Realizar Sorteio</button>                    
                 </form>
             </c:if>
-
-            <c:if test="${numerosSorteados != null}">
-                <label>Sorteio Realizado Com sucesso</label><br>
-                <label>Numeros Sorteados</label><br>
-                <label>
-                    <c:forEach items="${numerosSorteados}" var="numero">
-                        ${numero}
-                    </c:forEach>
-                </label>
-            </c:if>
+            <div class="row">
+                <c:if test="${numerosSorteados != null}">
+                    <div class="span4 alert alert-success">Sorteio Realizado Com sucesso</div>
+            </div>    
+                    <label>Números Sorteados</label>
+                    <label>
+                        <c:forEach items="${numerosSorteados}" var="numero">
+                            <b><i>${numero}</i></b>
+                        </c:forEach>
+                    </label>
+                </c:if>
             
         </div>
     </body>
