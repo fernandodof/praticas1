@@ -63,7 +63,14 @@
                             <td class="ids">${aposta.id}</td>
                             <td class="numeros">${aposta.numeros}</td>
                             <td class="ids">${aposta.concurso.id}</td>
-                            <td class="numeros">${aposta.concurso.numeros}</td>
+                            <c:choose>
+                                <c:when test="${aposta.concurso.numeros != null}">
+                                    <td class="numeros">${aposta.concurso.numeros}</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>Sorteio não realizado</td>
+                                </c:otherwise>
+                            </c:choose>
                             <c:choose>
                                 <c:when test="${aposta.numeros.toString() eq aposta.concurso.numeros.toString()}">
                                     <td>Acertou</td>
