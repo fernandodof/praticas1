@@ -64,8 +64,7 @@
             </c:if>
 
             <c:if test="${proximoConcurso != null and proximoConcurso.realizado == false}">
-                <br><br><label>Próximo Concurso</label><br>
-                <label>Numero do Concurso: ${proximoConcurso.id}</label><br>
+                <br><br><label>Próximo Concurso ${proximoConcurso.id}</label><br>
                 <label>Data do Sorteio: ${proximoConcurso.dataHora}</label>
                 <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
                     <input type="hidden" value="RealizarSorteio" name="command">
