@@ -10,9 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import org.apache.avro.reflect.Nullable;
 
 
 /**
@@ -27,6 +29,7 @@ public class Aposta implements Serializable {
     private int id;
     private SortedSet numeros;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "concurso_id")
     private Concurso concurso;
     
     public Aposta() {

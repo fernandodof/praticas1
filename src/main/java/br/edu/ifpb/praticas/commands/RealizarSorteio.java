@@ -29,7 +29,7 @@ public class RealizarSorteio implements Command{
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             GenericoDAO genericoDAO = new GenericoDAOJPA();
-            Concurso concurso = (Concurso) genericoDAO.getById(Concurso.class, Long.parseLong(request.getParameter("NumConcurso")));
+            Concurso concurso = (Concurso) genericoDAO.getById(Concurso.class, Integer.parseInt(request.getParameter("NumConcurso")));
             SortedSet numerosSorteados = GeradorDeNumeros.getSeisNumerosEntreUmESessenta();
             concurso.setNumeros(numerosSorteados);
             concurso.setRealizado(true);

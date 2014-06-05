@@ -32,7 +32,7 @@ import javax.persistence.TemporalType;
 public class Concurso implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_concurso")
-    private Long id;
+    private int id;
     private SortedSet numeros;
     @Column(unique = true)
     @Temporal(TemporalType.TIMESTAMP)
@@ -47,11 +47,11 @@ public class Concurso implements Serializable{
         this.realizado = false;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

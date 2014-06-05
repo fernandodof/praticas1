@@ -34,10 +34,14 @@ public class App {
         GenericoDAO genericoDAO = new GenericoDAOJPA();
         Pessoa pessoa = new Pessoa("Fernando", "fernandodof@gmail.com", "123456", false);
         Concurso concurso = new Concurso(Date.valueOf("2014-06-03"));
-//        genericoDAO.save(pessoa);
+        genericoDAO.save(pessoa);
 //        genericoDAO.save(concurso);
-        
-        System.out.println(genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos"));
+  
+//        Aposta a = (Aposta) genericoDAO.getById(Aposta.class, 4);
+//        concurso = (Concurso) genericoDAO.getById(Concurso.class, 3);
+//        a.setConcurso(concurso);
+//        
+//        System.out.println(genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos"));
 //        Map<String, Object> loginParms = new HashMap();
 //        loginParms.put("email", "fernandodof@gmail.com");
 //        loginParms.put("senha", "123456");

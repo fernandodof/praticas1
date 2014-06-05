@@ -43,10 +43,11 @@ public class CadastarAposta implements Command {
             SortedSet numeros = new TreeSet();
             numeros.addAll(Arrays.asList(numerosString));
 
-            Concurso concurso = (Concurso) request.getSession().getAttribute("proximoConcurso");
+            Concurso concurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
             Aposta aposta = new Aposta(numeros);
             aposta.setConcurso(concurso);
             pessoa.getAposta().add(aposta);
+            genericoDAO.update(aposta);
             genericoDAO.update(pessoa);
             request.setAttribute("apostaRealizada", true);
             this.forwardRequest(request, response, "apostador/PaginaPrincipalApostador.jsp");

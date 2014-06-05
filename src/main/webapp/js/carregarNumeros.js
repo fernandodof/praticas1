@@ -25,6 +25,7 @@ function carregarNumeros(element) {
                 numuerosDeBotaos[i].style.fontWeight = 'normal';
             }
         }
+        document.getElementById('realizar').disabled = false;
     } else {
         for (i = 0; i < numuerosDeBotaos.length; i++) {
             if (numsArray.indexOf(numuerosDeBotaos[i].id) === -1) {
@@ -33,19 +34,9 @@ function carregarNumeros(element) {
                 numuerosDeBotaos[i].style.fontWeight = 'normal';
             }
         }
+    
+        document.getElementById('realizar').disabled = true;
     }
     numsArray.sort(function(a, b){return a-b});
     document.getElementById('aposta').value = numsArray;
-}
-
-function botaoAposta(){
-    var numsArray = [];
-    numsArray = document.getElementById('aposta').value.split(",");
-    
-    if(numsArray.length < 6){
-        document.getElementById('realizar').disabled = true;
-    }
-    else if (numsArray.length === 6){
-        document.getElementById('realizar').disabled = ;
-    }
 }
