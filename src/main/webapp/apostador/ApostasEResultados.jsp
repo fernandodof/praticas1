@@ -38,16 +38,16 @@
 
                         %>
             <div class="row">
-                <div class="span1"><div class="btn btn-primary btn-large" style="margin-left: -25px;" title="voltar"><i class="icon-arrow-left icon-white"></i><a href="/ProjetoPraticas/apostador/PaginaPrincipalApostador.jsp"></a></div></div><div>
-                    <div class="span10"><div class="btn btn-primary btn-large" style="margin-left: -50px;"><i class="icon-user icon-white"></i> ${nome}</div><span style="color: #0088cc"></span></div>                
+                <div class="span1"><a class="btn btn-primary btn-large" href="/ProjetoPraticas/apostador/PaginaPrincipalApostador.jsp"><<</a></div>
+                <div class="span10"><div class="btn btn-primary btn-large" style="margin-left: -20px"><i class="icon-user icon-white"></i> ${nome}</div><span style="color: #0088cc"></span></div>                
                 <div class="span1">
-                        
+
                     <form method="post" action="/ProjetoPraticas/FrontCrontroller">
                         <button type="submit" class="btn btn-danger">Sair</button>
                         <input type="hidden" value="Logout" name="command">
                     </form>
                 </div>
-                
+
             </div>
             <h3>Apostas e Resultados</h3>
             <table class="table table-condensed">
