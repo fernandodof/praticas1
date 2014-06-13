@@ -9,14 +9,14 @@
     <head>        
         <title>Página do Apostador</title>
         <meta charset="utf-8">
-        <link href="/ProjetoPraticas/css/bootstrap.css" rel="stylesheet">
-        <link href="/ProjetoPraticas/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="/ProjetoPraticas/css/default.css" rel="stylesheet">
-        <link rel="shortcut icon" href="/ProjetoPraticas/img/favicon.fw.png" />
+        <link href="/praticas1/css/bootstrap.css" rel="stylesheet">
+        <link href="/praticas1/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/praticas1/css/default.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/praticas1/img/favicon.fw.png" />
     </head>
     <body onload="botaoAposta()">
         <div class="container">
-            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/ProjetoPraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
+            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/praticas1/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
                         <%
                             GenericoDAO genericoDAO = new GenericoDAOJPA();
                             Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="span11"><div class="btn btn-primary btn-large"><i class="icon-user icon-white"></i> ${nome}</div><span style="color: #0088cc"></span></div>
                 <div class="span1">
-                    <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+                    <form method="post" action="/praticas1/FrontCrontroller">
                         <button type="submit" class="btn btn-danger">Sair</button>
                         <input type="hidden" value="Logout" name="command">
                     </form>
@@ -41,7 +41,7 @@
                         <c:choose>     
                             <c:when test="${proximoConcurso != null}">   
 
-                                <form method="post" action="/ProjetoPraticas/FrontCrontroller">    
+                                <form method="post" action="/praticas1/FrontCrontroller">    
                                     <input type="text" id="aposta" name="aposta" readonly>
                                     <input type="hidden" value="CadastarAposta" name="command"> 
                                     <button id="realizar" type="submit" class="btn btn-warning" style="margin-top: -15px;" disabled>Realizar Aposta</button>
@@ -75,12 +75,12 @@
             </div>
             <div class="row">
                 <div class="span6">
-                    <a class="btn btn-block btn-primary span4" style="margin-left: 0px; margin-bottom: 25px; margin-top: 25px;" href="/ProjetoPraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
+                    <a class="btn btn-block btn-primary span4" style="margin-left: 0px; margin-bottom: 25px; margin-top: 25px;" href="/praticas1/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
                 </div>
                 
             </div>
 
         </div>
-        <script src="/ProjetoPraticas/js/carregarNumeros.js"></script>
+        <script src="/praticas1/js/carregarNumeros.js"></script>
     </body>
 </html>

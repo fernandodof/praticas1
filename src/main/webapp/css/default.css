@@ -1,8 +1,7 @@
 html{
-    background: url(/ProjetoPraticas/img/Bingo!.JPG) center no-repeat fixed;
+    background: url(/praticas1/img/Bingo!.JPG) center no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
-    
+    background-size: cover;  
 }

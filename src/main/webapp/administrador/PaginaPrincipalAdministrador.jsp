@@ -8,14 +8,14 @@
     <head>        
         <title>Página do Administrador - Acesso Restrito</title>
         <meta charset="utf-8">
-        <link href="/ProjetoPraticas/css/bootstrap.css" rel="stylesheet">
-        <link href="/ProjetoPraticas/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="/ProjetoPraticas/css/default.css" rel="stylesheet">
-        <link rel="shortcut icon" href="/ProjetoPraticas/img/favicon.fw.png" />
+        <link href="/praticas1/css/bootstrap.css" rel="stylesheet">
+        <link href="/praticas1/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/praticas1/css/default.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/praticas1/img/favicon.fw.png" />
     </head>
     <body>
         <div class="container">
-            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/ProjetoPraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
+            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/praticas1/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
             <%
                 GenericoDAO genericoDAO = new GenericoDAOJPA();
                 Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="span11"><h2>Administrador</h2></div>
                 <div class="span1">
-                    <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+                    <form method="post" action="/praticas1/FrontCrontroller">
                         <button type="submit" class="btn btn-danger">Sair</button>
                         <input type="hidden" value="Logout" name="command">
                     </form>
@@ -33,7 +33,7 @@
             </div>
             <h3>Novo concurso</h3>
             <div class="row">
-                <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
+                <form method="POST" action="/praticas1/FrontCrontroller">
                     <div class="span12">
                         <label>Data e Hora do sorteio</label>
                         <div class="row">
@@ -68,7 +68,7 @@
             <c:if test="${proximoConcurso != null and proximoConcurso.realizado == false}">
                 <label><b>Próximo Concurso ${proximoConcurso.id}</b></label>
                 <label><b>Data do Sorteio: ${proximoConcurso.dataHora}</b></label>
-                <form method="POST" action="/ProjetoPraticas/FrontCrontroller">
+                <form method="POST" action="/praticas1/FrontCrontroller">
                     <input type="hidden" value="RealizarSorteio" name="command">
                     <input type="hidden" name="NumConcurso" value="${proximoConcurso.id}">
                     <button type="submit" class="btn btn-large btn-inverse">Realizar Sorteio</button>                    

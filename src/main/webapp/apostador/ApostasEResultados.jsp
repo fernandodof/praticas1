@@ -18,15 +18,15 @@
     <head>        
         <title>Loteria - sua loteria!</title>
         <meta charset="utf-8">
-        <link href="/ProjetoPraticas/css/bootstrap.css" rel="stylesheet">
-        <link href="/ProjetoPraticas/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="/ProjetoPraticas/css/default.css" rel="stylesheet">
-        <link rel="shortcut icon" href="/ProjetoPraticas/img/favicon.fw.png" />
+        <link href="/praticas1/css/bootstrap.css" rel="stylesheet">
+        <link href="/praticas1/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="/praticas1/css/default.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/praticas1/img/favicon.fw.png" />
     </head>
     <body>
 
         <div class="container">
-            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/ProjetoPraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
+            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/praticas1/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
                         <%
                             GenericoDAO genericoDAO = new GenericoDAOJPA();
                             Concurso proximoConcurso = (Concurso) genericoDAO.getSingleResultOfNamedQuery("Concurso.proximos");
@@ -38,11 +38,11 @@
 
                         %>
             <div class="row">
-                <div class="span1"><a class="btn btn-primary btn-large" href="/ProjetoPraticas/apostador/PaginaPrincipalApostador.jsp"><<</a></div>
+                <div class="span1"><a class="btn btn-primary btn-large" href="/praticas1/apostador/PaginaPrincipalApostador.jsp"><<</a></div>
                 <div class="span10"><div class="btn btn-primary btn-large" style="margin-left: -20px"><i class="icon-user icon-white"></i> ${nome}</div><span style="color: #0088cc"></span></div>                
                 <div class="span1">
 
-                    <form method="post" action="/ProjetoPraticas/FrontCrontroller">
+                    <form method="post" action="/praticas1/FrontCrontroller">
                         <button type="submit" class="btn btn-danger">Sair</button>
                         <input type="hidden" value="Logout" name="command">
                     </form>
