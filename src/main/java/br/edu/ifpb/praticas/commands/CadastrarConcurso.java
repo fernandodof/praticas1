@@ -6,12 +6,15 @@
 package br.edu.ifpb.praticas.commands;
 
 import br.edu.ifpb.praticas.beans.Concurso;
-import br.edu.ifpb.praticas.dao.GenericoDAO;
-import br.edu.ifpb.praticas.dao.GenericoDAOJPA;
+import br.edu.ifpb.praticas.dao.ConcursoDAO;
+import br.edu.ifpb.praticas.dao.PessoaDAO;
 import br.edu.ifpb.praticas.exceptions.ErroAconteceuException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,10 +31,15 @@ public class CadastrarConcurso implements Command {
             request.setCharacterEncoding("UTF-8");
             Timestamp timestamp = Timestamp.valueOf(request.getParameter("data") + " " + request.getParameter("hora") + ":00");
             Concurso concurso = new Concurso(timestamp);
-            GenericoDAO genericoDAO = new GenericoDAOJPA();
-            if (genericoDAO.save(concurso)) {
-                request.setAttribute("cadastroSucesso", true);
-            } else {
+            ConcursoDAO concursoDAO = new ConcursoDAO();
+            try {
+                if (concursoDAO.insert(concurso)) {
+                    request.setAttribute("cadastroSucesso", true);
+                } else {
+                    throw new ErroAconteceuException("Ocorreu um erro no cadastro do concurso");
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
                 throw new ErroAconteceuException("Ocorreu um erro no cadastro do concurso");
             }
             this.forwardRequest(request, response, "administrador/PaginaPrincipalAdministrador.jsp");

@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>ProjetoPraticas</name>
+    <name>BDNCpraticas</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -15,11 +15,6 @@
     </properties>
     
     <dependencies>
-        <dependency>
-            <groupId>org.objectweb.carol</groupId>
-            <artifactId>carol</artifactId>
-            <version>2.2.10</version>
-        </dependency>
         <dependency>
             <groupId>org.kie.modules</groupId>
             <artifactId>org-apache-commons-cli-main</artifactId>
@@ -31,52 +26,32 @@
             <artifactId>commons-logging-api</artifactId>
             <version>1.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.objectweb.howl</groupId>
-            <artifactId>howl</artifactId>
-            <version>1.0.1-1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ow2.spec.ee</groupId>
-            <artifactId>ow2-connector-1.5-spec</artifactId>
-            <version>1.0.13</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ow2.spec.ee</groupId>
-            <artifactId>ow2-jta-1.1-spec</artifactId>
-            <version>1.0.13</version>
-        </dependency>
-        <dependency>
-            <groupId>com.experlog</groupId>
-            <artifactId>xapool</artifactId>
-            <version>1.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ow2.jotm</groupId>
-            <artifactId>jotm-core</artifactId>
-            <version>2.3.1-M1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.5.1</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.2-1003-jdbc4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-c3p0</artifactId>
-            <version>4.3.5.Final</version>
-        </dependency>
-        <dependency>
+         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.4</version>
             <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.orientechnologies</groupId>
+            <artifactId>orientdb-core</artifactId>
+            <version>1.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.orientechnologies</groupId>
+            <artifactId>orientdb-graphdb</artifactId>
+            <version>1.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.orientechnologies</groupId>
+            <artifactId>orientdb-client</artifactId>
+            <version>1.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.orientechnologies</groupId>
+            <artifactId>orientdb-jdbc</artifactId>
+            <version>1.7</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -86,37 +61,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search</artifactId>
-            <version>4.5.1.Final</version>
-        </dependency>
-        
-        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.1.1</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <scope>runtime</scope>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>c</artifactId>
-            <version>1.1.1</version>
-            <scope>runtime</scope>
-            <type>tld</type>
-        </dependency>
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>fmt</artifactId>
-            <version>1.1.1</version>
-            <scope>runtime</scope>
-            <type>tld</type>
-        </dependency>
+  
     </dependencies>
 
     <build>

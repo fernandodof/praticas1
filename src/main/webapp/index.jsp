@@ -8,12 +8,12 @@
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/default.css" rel="stylesheet">
-        <link rel="shortcut icon" href="/praticas1/img/favicon.fw.png" />
+        <link rel="shortcut icon" href="/BDNCpraticas/img/favicon.fw.png" />
     </head>
     <body>
 
         <div class="container">
-            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/praticas1/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
+            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/BDNCpraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
                         <%
                             String nome = (String) session.getAttribute("nome");
                         %>
@@ -26,7 +26,7 @@
                             <c:if test="${loginErro != null}">
                                 <div class="span3 alert alert-error" style="margin-left: 0pX;">Email ou Senha não conferem</div>                               
                             </c:if>
-                                <form method="POST" action="/praticas1/FrontCrontroller">
+                                <form method="POST" action="/BDNCpraticas/FrontCrontroller">
                                     <input class="span4" type="email" name="email" placeholder="Email" required>
                                     <input class="span4" type="password" name="senha" placeholder="Senha" required>
                                     <input type="hidden" value="Login" name="command"> 
@@ -45,7 +45,7 @@
                             <c:if test="${cadastroSucesso != null}">
                                 <div class="span3 alert alert-success" style="margin-left: 0px">Cadastro sucesso</div>
                             </c:if>                   
-                            <form method="POST" action="/praticas1/FrontCrontroller">
+                            <form method="POST" action="/BDNCpraticas/FrontCrontroller">
                                 <input class="span4" type="text" name="nome" placeholder="Nome" required value="${nomeCadastro}">
                                 <input class="span4" type="email" name="email" placeholder="Email" required value="${email}">
                                 <input class="span4" type="password" name="senha" placeholder="Senha" required>
@@ -69,7 +69,7 @@
                         </c:when>
                     </c:choose>
                     <h2>Bem vindo: ${nome}</h2>
-                    <form method="post" action="/praticas1/FrontCrontroller">
+                    <form method="post" action="/BDNCpraticas/FrontCrontroller">
                         <input type="submit" value="Logout">
                         <input type="hidden" value="Logout" name="command">
                     </form>

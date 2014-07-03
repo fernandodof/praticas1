@@ -21,7 +21,7 @@ public class Logout implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.getSession().invalidate();
-            response.sendRedirect("/praticas1/index.jsp");
+            response.sendRedirect("/BDNCpraticas/index.jsp");
         } catch (IOException ex) {
             ex.printStackTrace();
         }

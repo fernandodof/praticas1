@@ -5,19 +5,11 @@
  */
 package br.edu.ifpb.praticas.commands;
 
-import br.edu.ifpb.praticas.beans.Concurso;
 import br.edu.ifpb.praticas.beans.Pessoa;
-import br.edu.ifpb.praticas.dao.GenericoDAO;
-import br.edu.ifpb.praticas.dao.GenericoDAOJPA;
+import br.edu.ifpb.praticas.dao.PessoaDAO;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.persistence.NoResultException;
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,25 +24,27 @@ public class Login implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             request.setCharacterEncoding("UTF-8");
-            GenericoDAO genericoDAO = new GenericoDAOJPA();
-            Map<String, Object> loginParms = new HashMap();
-            loginParms.put("email", request.getParameter("email"));
-            loginParms.put("senha", request.getParameter("senha"));
+            PessoaDAO pessoaDAO = new PessoaDAO();
 
-            Pessoa pessoa = (Pessoa) genericoDAO.getSingleResultOfNamedQuery("Pessoa.login", loginParms);
-            request.getSession().setAttribute("nome", pessoa.getNome());
-            request.getSession().setAttribute("id", pessoa.getId());
-            request.getSession().setAttribute("isAdm", pessoa.isAdm());
-            request.getSession().setAttribute("logado", true);
-            if (pessoa.isAdm()) {
-                this.forwardRequest(request, response, "administrador/PaginaPrincipalAdministrador.jsp");
-            } else {
-                this.forwardRequest(request, response, "apostador/PaginaPrincipalApostador.jsp");
-            }
-        } catch (NoResultException ex) {
-            request.setAttribute("loginErro", "Usuário ou senha não conferem");
+            String email = request.getParameter("email");
+            String senha = request.getParameter("senha");
+            Pessoa pessoa;
+            try {
+                pessoa = pessoaDAO.logar(email, senha);
+                request.getSession().setAttribute("nome", pessoa.getNome());
+                request.getSession().setAttribute("id", pessoa.getId());
+                request.getSession().setAttribute("isAdm", pessoa.isAdm());
+                request.getSession().setAttribute("logado", true);
+                if (pessoa.isAdm()) {
+                    this.forwardRequest(request, response, "administrador/PaginaPrincipalAdministrador.jsp");
+                } else {
+                    this.forwardRequest(request, response, "apostador/PaginaPrincipalApostador.jsp");
+                }
+            } catch (SQLException ex) {
+                 request.setAttribute("loginErro", "Usuário ou senha não conferem");
             this.forwardRequest(request, response, "index.jsp");
-        } catch (IOException ex) {
+            }  
+        } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
         }
     }

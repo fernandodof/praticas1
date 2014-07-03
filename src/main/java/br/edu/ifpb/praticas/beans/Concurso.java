@@ -6,36 +6,17 @@
 
 package br.edu.ifpb.praticas.beans;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import java.util.SortedSet;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author Fernando
  */
-@Entity
-@SequenceGenerator(name = "seq_concurso", sequenceName = "Sequencia_de_concurso", allocationSize = 1, initialValue = 0)
-@NamedQueries({
-    @NamedQuery(name="Concurso.proximos", query = "SELECT c FROM Concurso c WHERE c.dataHora > CURRENT_TIMESTAMP and c.realizado = FALSE")})
-public class Concurso implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_concurso")
-    private int id;
+
+public class Concurso{
+    private String id;
     private SortedSet numeros;
-    @Column(unique = true)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date dataHora;
     private boolean realizado;
     
@@ -47,11 +28,11 @@ public class Concurso implements Serializable{
         this.realizado = false;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

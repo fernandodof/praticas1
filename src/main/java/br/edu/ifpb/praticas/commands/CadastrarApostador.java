@@ -6,10 +6,12 @@
 package br.edu.ifpb.praticas.commands;
 
 import br.edu.ifpb.praticas.beans.Pessoa;
-import br.edu.ifpb.praticas.dao.GenericoDAO;
-import br.edu.ifpb.praticas.dao.GenericoDAOJPA;
+import br.edu.ifpb.praticas.dao.PessoaDAO;
 import br.edu.ifpb.praticas.exceptions.ErroAconteceuException;
+import com.orientechnologies.orient.core.exception.OStorageException;
+import com.orientechnologies.orient.core.index.OIndexException;
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,21 +29,25 @@ public class CadastrarApostador implements Command {
             if (!request.getParameter("senha").equals(request.getParameter("senha1"))) {
                 throw new ErroAconteceuException("Senhas não conferem");
             }
-            GenericoDAO genericoDAO = new GenericoDAOJPA();
+            PessoaDAO pessoaDAO = new PessoaDAO();
             Pessoa pessoa = new Pessoa(request.getParameter("nome"), request.getParameter("email"), request.getParameter("senha"), false);
-            if(genericoDAO.save(pessoa)){
-                request.setAttribute("cadastroSucesso", true);
-            }else{
+            try {
+                if (pessoaDAO.insert(pessoa)) {
+                    request.setAttribute("cadastroSucesso", true);
+                } else {
+                    throw new ErroAconteceuException("Ocorreu um erro com seu cadastro");
+                }
+            } catch (SQLException | OStorageException ex) {
                 throw new ErroAconteceuException("Ocorreu um erro com seu cadastro");
             }
-            this.forwardRequest(request, response,"index.jsp");
+            this.forwardRequest(request, response, "index.jsp");
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (ErroAconteceuException ex) {
             request.setAttribute("erroOcorrido", ex.getMessage());
             request.setAttribute("nomeCadastro", request.getAttribute("nome"));
             request.setAttribute("email", request.getAttribute("email"));
-            this.forwardRequest(request, response,"index.jsp");
+            this.forwardRequest(request, response, "index.jsp");
         }
     }
 
