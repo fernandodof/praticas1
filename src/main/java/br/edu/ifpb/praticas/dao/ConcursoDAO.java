@@ -87,9 +87,11 @@ public class ConcursoDAO {
             concurso.setId(resultado.getString("id"));
             concurso.setDataHora(resultado.getTimestamp("data"));
             concurso.setRealizado(resultado.getBoolean("realizado"));
-            Set numeros = new TreeSet();
-            numeros.addAll((Collection) resultado.getObject("numeros"));
-            concurso.setNumeros((SortedSet) numeros);
+            if(resultado.getObject("numeros")!=null){
+                Set numeros = new TreeSet();
+                numeros.addAll((Collection) resultado.getObject("numeros"));
+                concurso.setNumeros((SortedSet) numeros);
+            }
             stat.close();
         } finally {
             this.fecharConexao();

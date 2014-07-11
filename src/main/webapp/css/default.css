@@ -1,7 +1,35 @@
 html{
-    background: url(/praticas1/img/Bingo!.JPG) center no-repeat fixed;
+    background: url(/BDNCpraticas/img/Bingo!.JPG) center no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;  
+}
+
+#exclirConta{
+    margin-bottom: 10px;
+}
+
+#divExcluir{
+    margin-bottom: 30px;
+}
+
+#oculto{
+    display: none;
+}
+
+#editar{
+    margin-bottom: 10px;
+}
+
+#editar{
+    width: 150px;
+}
+
+#excluirConta{
+    width: 175px;
+}
+
+#btVoltar{
+    margin-bottom: 15px;
 }

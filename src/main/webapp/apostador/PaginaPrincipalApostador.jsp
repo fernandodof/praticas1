@@ -11,10 +11,12 @@
         <link href="/BDNCpraticas/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="/BDNCpraticas/css/default.css" rel="stylesheet">
         <link rel="shortcut icon" href="/BDNCpraticas/img/favicon.fw.png" />
+        <script src="/BDNCpraticas/js/carregarNumeros.js"></script>
+        <script src="/BDNCpraticas/js/mostrarDiv.js"></script>
     </head>
     <body onload="botaoAposta()">
         <div class="container">
-            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/BDNCpraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
+            <div class="row" style="text-align: center"><h1><a href="/BDNCpraticas/index.jsp"><img src="/BDNCpraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
                         <%
                             ConcursoDAO concursoDAO = new ConcursoDAO();
                             Concurso proximoConcurso = concursoDAO.getProximoConcurso();
@@ -22,7 +24,7 @@
                         %>
 
             <div class="row">
-                <div class="span11"><div class="btn btn-primary btn-large"><i class="icon-user icon-white"></i> ${nome}</div><span style="color: #0088cc"></span></div>
+                <div class="span11"><div class="btn btn-primary btn-large"><i class="icon-user icon-white"></i>${nome}</div><span style="color: #0088cc"></span></div>
                 <div class="span1">
                     <form method="post" action="/BDNCpraticas/FrontCrontroller">
                         <button type="submit" class="btn btn-danger">Sair</button>
@@ -39,12 +41,12 @@
                         <c:choose>     
                             <c:when test="${proximoConcurso != null}">   
 
-                                <form method="post" action="/BDNCpraticas/FrontCrontroller">    
-                                    <input type="text" id="aposta" name="aposta" readonly>
-                                    <input type="hidden" value="CadastarAposta" name="command"> 
-                                    <button id="realizar" type="submit" class="btn btn-warning" style="margin-top: -15px;" disabled>Realizar Aposta</button>
-                                   
-                                </form>
+                            <form method="post" action="/BDNCpraticas/FrontCrontroller">    
+                                <input type="text" id="aposta" name="aposta" readonly>
+                                <input type="hidden" value="CadastarAposta" name="command"> 
+                                <button id="realizar" type="submit" class="btn btn-warning" style="margin-top: -15px;" disabled>Realizar Aposta</button>
+
+                            </form>
 
 
                             <c:forEach begin="1" end="60" var="count" >
@@ -75,10 +77,38 @@
                 <div class="span6">
                     <a class="btn btn-block btn-primary span4" style="margin-left: 0px; margin-bottom: 25px; margin-top: 25px;" href="/BDNCpraticas/apostador/ApostasEResultados.jsp">Apostas e resultados</a>
                 </div>
-                
+
             </div>
 
+            <div class="row">
+                <div class="span6">
+                    <a class="btn btn-info" href="/BDNCpraticas/apostador/EditarCadastro.jsp" id="editar">Editar cadastro</a>
+                </div>
+            </div>
+
+            <div id="divExcluir">
+                <div class="row">
+                    <div class="span6">
+                        <input type="button" class="btn btn-warning span4" id="excluirConta" onclick="mostrarDiv(this)" value="Excluir minha conta">
+                    </div>
+                </div>
+
+                <div class="row" id="oculto" <c:if test="${erroExclusao != null}">style="display: block"</c:if>>
+
+                        <div class="span6">
+                            <form method="post" action="/BDNCpraticas/FrontCrontroller">
+                                <input type="text" placeholder="Senha" id="senha" name="senha">
+                                <input type="submit" class="btn btn-danger" id="excluir" value="Excluir">
+                                <input type="hidden" value="ExcluirConta" name="command">
+                            </form>
+                            <div class="row">
+                            <c:if test="${erroExclusao != null}">
+                                <div class="alert alert-error span3">${erroExclusao}</div>
+                            </c:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <script src="/BDNCpraticas/js/carregarNumeros.js"></script>
     </body>
 </html>

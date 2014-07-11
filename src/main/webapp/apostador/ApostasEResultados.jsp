@@ -26,7 +26,7 @@
     <body>
 
         <div class="container">
-            <div class="row" style="text-align: center"><h1><a href="index.jsp"><img src="/BDNCpraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
+            <div class="row" style="text-align: center"><h1><a href="/BDNCpraticas/index.jsp"><img src="/BDNCpraticas/img/logo.fw.png" alt="Mais Sorte" /></a></h1></div>
                         <%
                             ConcursoDAO concursoDAO = new ConcursoDAO();
                             Concurso proximoConcurso = (Concurso) concursoDAO.getProximoConcurso();
